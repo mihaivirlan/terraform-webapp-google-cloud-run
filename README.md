@@ -17,10 +17,20 @@ Then you should:
 - enable Cloud Run Api and Container Registery Api in this project
 - create a service account with appropriate permissions (we are using the 'Owner' role but it can be fine tuned)
 - export the credentials for this service account in a .json file
-
-## Authors
-Victor Josephson (@valsen)\
-Maël Madon (@Mema5)
+- git clone https://github.com/mihaivirlan/terraform-webapp-google-cloud-run.git
+- cd terraform-webapp-google-cloud-run/
+- rename the .json file like "service-account.json", and move it in your terraform project
+- sudo docker build . -t demo-app-v1
+- sudo docker images
+- sudo docker run -itd -p 80:8080 demo-app-v1
+- sudo docker ps -a
+- from browser type and acces: http://localhost:80
+- gcloud builds submit --tag gcr.io/mihail/demo
+- from google cloud console check your Container Registry
+- terraform init
+- terraform plan
+- terraform apply (after finish running, check form google cloud console, your Cloud Run)
+- terraform destroy (after creating resources successfully, we can delete our resources from GCP)
 
 ## Links to relevant resources
 - [Google cloud run service in Terraform documentation](https://www.terraform.io/docs/providers/google/r/cloud_run_service.html)
