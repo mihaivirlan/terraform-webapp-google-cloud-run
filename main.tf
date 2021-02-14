@@ -1,10 +1,10 @@
 // Settings for the google cloud account
 // Write the path to the json key giving access to the project
 provider "google" {
-  credentials = file("<google-service-account-key-here>")
-  project = "pelagic-campus-276207"
-  region  = "europe-north1"
-  zone    = "europe-north1-a"
+  credentials = file("service-account.json")
+  project = "mihail"
+  region  = "us-central1"
+  zone    = "us-central1-a"
 }
 
 // Ressource 1: cloud run service running the docker image
@@ -13,12 +13,12 @@ provider "google" {
 // must have the appropriate permissions.
 resource "google_cloud_run_service" "default" {
   name     = "demo"
-  location = "europe-north1"
+  location = "us-central1"
 
   template {
     spec {
       containers {
-        image = "gcr.io/<project-id>/<image-name>:latest"
+        image = "gcr.io/mihail/demo:latest"
       }
     }
   }
